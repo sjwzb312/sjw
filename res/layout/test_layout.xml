@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sjw.heartchat.MainActivity"
+    tools:ignore="MergeRootFrame"
+    android:orientation="vertical" >
+
+      <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="订阅" />
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="push" />
+
+    <Button
+        android:id="@+id/btn_cancle_push"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退订" />
+
+</LinearLayout>
