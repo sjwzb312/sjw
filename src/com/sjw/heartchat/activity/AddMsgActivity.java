@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import cn.bmob.im.BmobChatManager;
-import cn.bmob.push.a.be;
 import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -52,7 +50,12 @@ public class AddMsgActivity extends BaseActivity {
 			public void onClick(View v) {
 				String msg = et_msg.getText().toString();
 				if (!TextUtils.isEmpty(msg)) {
-					addTroublesMsg(msg, true);
+					MsgBean msgBean = new MsgBean();
+					msgBean.setMsg(msg);
+					UserBean userBean = new UserBean();
+					userBean.setUsername(getSpUserName());
+					msgBean.setUserBean(userBean);
+					sendMsg(msgBean);
 				}
 
 			}
@@ -98,35 +101,4 @@ public class AddMsgActivity extends BaseActivity {
 		sendBroadcast(intent);
 	}
 
-	/**
-	 * 发表信息
-	 * 
-	 * @param strMsg
-	 * @param isLocation
-	 */
-	private void addTroublesMsg(final String strMsg, boolean isLocation) {
-
-		if (isLocation) {
-			locationUtils.startLoaction(new LoactionListener() {
-
-				@Override
-				public void onCompleteLocation(LocationBean locationBean) {
-					MsgBean bean = new MsgBean();
-					BmobGeoPoint geoPoint = new BmobGeoPoint();
-					geoPoint.setLatitude(locationBean.lat);
-					geoPoint.setLongitude(locationBean.lon);
-					bean.setMsgGeoPoint(geoPoint);
-					UserBean userBean = new UserBean();
-					userBean.setObjectId(userManager.getCurrentUserObjectId());
-					userBean.setUsername(userManager.getCurrentUserName());
-					bean.setUserBean(userBean);
-					bean.setMsgTime(System.currentTimeMillis());
-					bean.setMsg(strMsg);
-					sendMsg(bean);
-
-				}
-			});
-		}
-
-	}
 }

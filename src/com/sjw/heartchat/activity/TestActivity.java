@@ -3,30 +3,17 @@ package com.sjw.heartchat.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sjw.heartchat.R;
-import com.sjw.heartchat.bean.PushMsgBean;
-import com.sjw.heartchat.utils.LocationUtils;
-import com.sjw.heartchat.utils.ToastUtil;
-import com.sjw.heartchat.utils.LocationUtils.LoactionListener;
-import com.sjw.heartchat.utils.LocationUtils.LocationBean;
-import com.sjw.heartchat.utils.LogUtil;
-
-import cn.bmob.im.BmobChat;
-import cn.bmob.im.BmobChatManager;
-import cn.bmob.im.bean.BmobChatUser;
-import cn.bmob.im.bean.BmobMsg;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.PushListener;
 import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UpdateListener;
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
+
+import com.sjw.heartchat.R;
 
 public class TestActivity extends BaseActivity {
 	BmobPushManager<BmobInstallation> bmobPush;

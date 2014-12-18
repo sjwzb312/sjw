@@ -29,6 +29,7 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context=this;
 
 	}
 
@@ -74,6 +75,10 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 		SharePreUtil.putStrToSp(this, SharePreUtil.SP_USER.USER_PWD,
 				userBean.getPassword());
 
+	}
+	
+	public String getSpUserName(){
+		return SharePreUtil.getStrFroSp(context, SharePreUtil.SP_USER.USER_NAME, "-1");
 	}
 
 	/**

@@ -13,6 +13,7 @@ public class SharePreUtil {
 		public static final String USER_ID = "USER_ID";
 		public static final String USER_CHAT_ID = "USER_CHAT_ID";
 	}
+	
 
 	/**
 	 * 定位信息

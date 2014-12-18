@@ -7,10 +7,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import cn.bmob.v3.listener.SaveListener;
 
+import com.easemob.EMError;
+import com.easemob.exceptions.EaseMobException;
 import com.sjw.heartchat.R;
 import com.sjw.heartchat.bean.UserBean;
+import com.sjw.heartchat.http.RegistRequest;
+import com.sjw.heartchat.http.RegistRequest.RegistListener;
 
 public class RegistActivity extends BaseActivity {
 	private EditText et_name;
@@ -77,7 +82,6 @@ public class RegistActivity extends BaseActivity {
 
 			@Override
 			public void onSuccess() {
-				Toast("注册成成功");
 				logD(TAG,
 						"注册成功:" + userBean.getUsername() + "-"
 								+ userBean.getObjectId() + "-"
@@ -86,8 +90,7 @@ public class RegistActivity extends BaseActivity {
 				// saveUser(userBean);
 				// registChatUser(userBean.getUsername(),
 				// userBean.getPassword());
-				startActivity(new Intent(context, MainActivity.class));
-				finish();
+				registChat(userBean);
 
 			}
 
@@ -99,36 +102,41 @@ public class RegistActivity extends BaseActivity {
 		});
 	}
 
-	// /**
-	// * 注册聊天的的用户
-	// *
-	// * @param chatName
-	// * @param chatPwd
-	// */
-	// private void registChatUser(String chatName, String chatPwd) {
-	// final BmobChatUser chatUser = new BmobChatUser();
-	// chatUser.setUsername(chatName);
-	// chatUser.setPassword(chatPwd);
-	// chatUser.signUp(context, new SaveListener() {
-	//
-	// @Override
-	// public void onSuccess() {
-	// UserBean userBean = new UserBean();
-	// userBean.setUsername(chatUser.getUsername());
-	// userBean.setPassword(chatUser.getPassword());
-	// userBean.setUserChatId(chatUser.getObjectId());
-	// saveUser(userBean);
-	// Toast("注册成成功....");
-	// pd.dismiss();
-	//
-	// }
-	//
-	// @Override
-	// public void onFailure(int arg0, String arg1) {
-	// Toast("注册失败...");
-	// }
-	// });
-	//
-	// }
+	private void registChat(final UserBean userBean) {
+		RegistRequest registRequest = new RegistRequest(userBean.getUsername(),
+				userBean.getPassword(), new RegistListener() {
+
+					@Override
+					public void onSuccess() {
+						saveUser(userBean);
+						Toast("注册成功");
+						startActivity(new Intent(context, MainActivity.class));
+						finish();
+
+					}
+
+					@Override
+					public void onError(EaseMobException exception) {
+
+						int errorCode = exception.getErrorCode();
+						if (errorCode == EMError.NONETWORK_ERROR) {
+							Toast.makeText(context, "网络异常，请检查网络！",
+									Toast.LENGTH_SHORT).show();
+						} else if (errorCode == EMError.USER_ALREADY_EXISTS) {
+							Toast.makeText(context, "用户已存在！",
+									Toast.LENGTH_SHORT).show();
+						} else if (errorCode == EMError.UNAUTHORIZED) {
+							Toast.makeText(context, "注册失败，无权限！",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(context,
+									"注册失败: " + exception.getMessage(),
+									Toast.LENGTH_SHORT).show();
+						}
+
+					}
+				});
+		registRequest.request();
+	}
 
 }

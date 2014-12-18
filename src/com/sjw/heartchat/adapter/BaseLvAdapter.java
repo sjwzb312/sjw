@@ -67,5 +67,11 @@ public abstract class BaseLvAdapter<E> extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return super.getItemViewType(position);
 	}
+	/**
+	 * 刷新页面
+	 */
+	public void refresh() {
+		notifyDataSetChanged();
+	}
 
 }

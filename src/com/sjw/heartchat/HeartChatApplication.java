@@ -4,6 +4,7 @@ import android.app.Application;
 import cn.bmob.v3.Bmob;
 
 import com.baidu.location.LocationClient;
+import com.easemob.chat.EMChat;
 
 public class HeartChatApplication extends Application {
 	public LocationClient mLocationClient;
@@ -12,6 +13,7 @@ public class HeartChatApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		Bmob.initialize(this, APPID);
+		EMChat.getInstance().init(getApplicationContext());
 		 // 使用推送服务时的初始化操作
 	    
 		initLocation();

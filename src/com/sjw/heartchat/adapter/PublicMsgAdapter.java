@@ -13,10 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.TextView;
-
-import cn.bmob.push.a.in;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.sjw.heartchat.R;

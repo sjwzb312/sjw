@@ -10,6 +10,8 @@ import cn.bmob.v3.listener.SaveListener;
 
 import com.sjw.heartchat.R;
 import com.sjw.heartchat.bean.UserBean;
+import com.sjw.heartchat.http.LoginRequest;
+import com.sjw.heartchat.http.LoginRequest.LoginListener;
 
 public class LoginActivity extends BaseActivity {
 	private EditText et_name;
@@ -63,7 +65,7 @@ public class LoginActivity extends BaseActivity {
 	 * @param name
 	 * @param pwd
 	 */
-	private void login(final String name, String pwd) {
+	private void login(final String name, final String pwd) {
 		if (name == null || pwd == null) {
 			return;
 		}
@@ -76,8 +78,8 @@ public class LoginActivity extends BaseActivity {
 
 			@Override
 			public void onSuccess() {
-				saveUser(userBean);
-				pd.dismiss();
+
+				loginChat(userBean);
 
 			}
 
@@ -87,6 +89,28 @@ public class LoginActivity extends BaseActivity {
 				Toast("登陆失败" + arg1);
 			}
 		});
+	}
+
+	private void loginChat(final UserBean userBean) {
+		LoginRequest loginRequest = new LoginRequest(userBean.getUsername(),
+				userBean.getPassword(), new LoginListener() {
+
+					@Override
+					public void onSuccess() {
+						pd.dismiss();
+						saveUser(userBean);
+						Toast("登陆成功");
+						startActivity(new Intent(LoginActivity.this,
+								MainActivity.class));
+
+					}
+
+					@Override
+					public void onError(int code, String msg) {
+
+					}
+				});
+		loginRequest.request();
 	}
 
 }

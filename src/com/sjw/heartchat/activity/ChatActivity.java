@@ -6,21 +6,18 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import cn.bmob.im.BmobUserManager;
-import cn.bmob.im.bean.BmobChatUser;
-import cn.bmob.im.bean.BmobMsg;
-import cn.bmob.im.inteface.EventListener;
-import cn.bmob.v3.BmobPushManager;
 import cn.bmob.v3.listener.PushListener;
 
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.TextMessageBody;
+import com.easemob.chat.EMMessage.ChatType;
 import com.sjw.heartchat.R;
 import com.sjw.heartchat.adapter.LvChatAdapter;
 import com.sjw.heartchat.bean.MsgBean;
-import com.sjw.heartchat.inte.DefaultEventListener;
-import com.sjw.heartchat.receiver.HeartChatMsgReceiver;
 import com.sjw.heartchat.utils.LogUtil;
-import com.sjw.heartchat.utils.ToastUtil;
+import com.sjw.heartchat.utils.SharePreUtil;
 
 public class ChatActivity extends BaseActivity implements OnClickListener {
 	private EditText et_chat;
@@ -28,6 +25,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private MsgBean msgBean;
 	private ListView lv_chat;
 	private LvChatAdapter lvChatAdapter;
+	private EMConversation conversation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +50,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		super.initData();
 		// targChatUser=(BmobChatUser)
 		// getIntent().getSerializableExtra("targUser");
+
 		msgBean = (MsgBean) getIntent().getSerializableExtra("msgBean");
+		conversation = EMChatManager.getInstance().getConversation(
+				getSpUserName());
 		lvChatAdapter = new LvChatAdapter(this);
 		lv_chat.setAdapter(lvChatAdapter);
 	}
@@ -67,7 +68,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_chat_send:
-			sendChat();
+			String content = et_chat.getText().toString();
+			sendText(content);
 			break;
 
 		default:
@@ -76,36 +78,24 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 	}
 
-	/**
-	 * 发送消息
-	 */
-	private void sendChat() {
-		// targChatUser = new BmobChatUser();
-		// targChatUser.setUsername("1234564");
-		// targChatUser.setObjectId(msgBean);
-		String msg = et_chat.getText().toString();
-		LogUtil.d("targetId", msgBean.getUserBean().getObjectId() + " "
-				+ msgBean.getUserBean().getUsername());
-		// a34058d691
-		msgBean.getUserBean().setUsername("1234567");
-		BmobMsg message = BmobMsg.createTextSendMsg(context, msgBean
-				.getUserBean().getObjectId(), msg);
-		chatManager.sendTextMessage(msgBean.getUserBean(), message,
-				new PushListener() {
+	private void sendText(String content) {
 
-					@Override
-					public void onSuccess() {
-						Toast("发送成功....");
+		if (content.length() > 0) {
+			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
+			// 如果是群聊，设置chattype,默认是单聊
 
-					}
+			TextMessageBody txtBody = new TextMessageBody(content);
+			// 设置消息body
+			message.addBody(txtBody);
+			// 设置要发给谁,用户username或者群聊groupid
+			message.setReceipt("123456123");
+			// 把messgage加到conversation中
+			conversation.addMessage(message);
+			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
+			lvChatAdapter.refresh();
+			lv_chat.setSelection(lv_chat.getCount() - 1);
+			et_chat.setText("");
 
-					@Override
-					public void onFailure(int arg0, String arg1) {
-						Toast("发送失败...." + arg1);
-
-					}
-				});
-
+		}
 	}
-
 }
