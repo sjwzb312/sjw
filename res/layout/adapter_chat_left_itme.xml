@@ -10,17 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <ProgressBar
-            android:id="@+id/pb_left_chat"
-            android:layout_width="20dip"
-            android:layout_height="20dip" />
-
-        <TextView
-            android:id="@+id/tv_left_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
-
         <TextView
             android:id="@+id/tv_chat_left"
             android:layout_width="wrap_content"

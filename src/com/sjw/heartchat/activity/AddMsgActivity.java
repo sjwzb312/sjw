@@ -15,6 +15,7 @@ import com.sjw.heartchat.bean.MsgBean;
 import com.sjw.heartchat.bean.UserBean;
 import com.sjw.heartchat.utils.Contans.BroadCastAction;
 import com.sjw.heartchat.utils.LocationUtils;
+import com.sjw.heartchat.utils.LogUtil;
 import com.sjw.heartchat.utils.LocationUtils.LoactionListener;
 import com.sjw.heartchat.utils.LocationUtils.LocationBean;
 
@@ -53,6 +54,9 @@ public class AddMsgActivity extends BaseActivity {
 					MsgBean msgBean = new MsgBean();
 					msgBean.setMsg(msg);
 					UserBean userBean = new UserBean();
+					userBean.setObjectId(getSpUserID());
+					msgBean.setUserName(getSpUserName());
+					LogUtil.d("userName", getSpUserName());
 					userBean.setUsername(getSpUserName());
 					msgBean.setUserBean(userBean);
 					sendMsg(msgBean);

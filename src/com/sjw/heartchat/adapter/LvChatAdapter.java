@@ -15,7 +15,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.sjw.heartchat.R;
-import com.sjw.heartchat.utils.SharePreUtil;
+import com.sjw.heartchat.utils.LogUtil;
 
 /**
  * 聊天adapter
@@ -24,17 +24,35 @@ import com.sjw.heartchat.utils.SharePreUtil;
  * 
  */
 public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
-	public static final int TYPE_LEFT = 0;
-	public static final int TYPE_RIGHT = 1;
+	private static final int MESSAGE_TYPE_RECV_TXT = 0;
+	private static final int MESSAGE_TYPE_SENT_TXT = 1;
+	private static final int MESSAGE_TYPE_SENT_IMAGE = 2;
+	private static final int MESSAGE_TYPE_SENT_LOCATION = 3;
+	private static final int MESSAGE_TYPE_RECV_LOCATION = 4;
+	private static final int MESSAGE_TYPE_RECV_IMAGE = 5;
+	private static final int MESSAGE_TYPE_SENT_VOICE = 6;
+	private static final int MESSAGE_TYPE_RECV_VOICE = 7;
+	private static final int MESSAGE_TYPE_SENT_VIDEO = 8;
+	private static final int MESSAGE_TYPE_RECV_VIDEO = 9;
+	private static final int MESSAGE_TYPE_SENT_FILE = 10;
+	private static final int MESSAGE_TYPE_RECV_FILE = 11;
+	private static final int MESSAGE_TYPE_SENT_VOICE_CALL = 12;
+	private static final int MESSAGE_TYPE_RECV_VOICE_CALL = 13;
 	public static final int TYPE_SIZE = 2;
+
 	private EMConversation emConversation;
 
-	public LvChatAdapter(Context context) {
+	public LvChatAdapter(Context context, String toUserName) {
 		this.context = context;
-		emConversation = EMChatManager.getInstance().getConversation(
-				SharePreUtil.getStrFroSp(context,
-						SharePreUtil.SP_USER.USER_NAME, "-1"));
+		emConversation = EMChatManager.getInstance()
+				.getConversation(toUserName);
 
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return emConversation.getMsgCount();
 	}
 
 	@Override
@@ -44,19 +62,16 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 		if (convertView == null) {
 			holder = new Holder();
 			switch (getItemViewType(position)) {
-			case TYPE_LEFT:
+			case MESSAGE_TYPE_RECV_TXT:
 				convertView = LayoutInflater.from(context).inflate(
 						R.layout.adapter_chat_left_itme, null);
 				holder.tv_left = (TextView) convertView
 						.findViewById(R.id.tv_chat_left);
-				holder.tv_left_state = (TextView) convertView
-						.findViewById(R.id.tv_left_state);
-				holder.pb_left = (ProgressBar) convertView
-						.findViewById(R.id.pb_left_chat);
+				
 				convertView.setTag(holder);
 				break;
 
-			case TYPE_RIGHT:
+			case MESSAGE_TYPE_SENT_TXT:
 				convertView = LayoutInflater.from(context).inflate(
 						R.layout.adapter_chat_right_itme, null);
 				holder.tv_right = (TextView) convertView
@@ -75,15 +90,15 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 			holder = (Holder) convertView.getTag();
 		}
 		switch (getItemViewType(position)) {
-		case TYPE_LEFT:
+		case MESSAGE_TYPE_RECV_TXT:
 			TextMessageBody txtBody = (TextMessageBody) emMessage.getBody();
 
 			// 设置内容
 			holder.tv_left.setText(txtBody.getMessage());
-			handleTextMessage(emMessage, holder, position);
+			//handleTextMessage(emMessage, holder, position);
 			break;
 
-		case TYPE_RIGHT:
+		case MESSAGE_TYPE_SENT_TXT:
 			TextMessageBody rightBody = (TextMessageBody) emMessage.getBody();
 
 			// 设置内容
@@ -100,18 +115,40 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 	private class Holder {
 		TextView tv_left;
 		TextView tv_right;
-		ProgressBar pb_left;
 		ProgressBar pb_right;
-		TextView tv_left_state;
 		TextView tv_right_state;
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		// if (bmobMsg.getBelongId().equals(currentUserId)) {
-		// return TYPE_RIGHT;
-		// }
-		return TYPE_LEFT;
+		EMMessage message = emConversation.getMessage(position);
+		if (message.getType() == EMMessage.Type.TXT) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT
+					: MESSAGE_TYPE_SENT_TXT;
+		}
+		if (message.getType() == EMMessage.Type.IMAGE) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_IMAGE
+					: MESSAGE_TYPE_SENT_IMAGE;
+
+		}
+		if (message.getType() == EMMessage.Type.LOCATION) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_LOCATION
+					: MESSAGE_TYPE_SENT_LOCATION;
+		}
+		if (message.getType() == EMMessage.Type.VOICE) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE
+					: MESSAGE_TYPE_SENT_VOICE;
+		}
+		if (message.getType() == EMMessage.Type.VIDEO) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO
+					: MESSAGE_TYPE_SENT_VIDEO;
+		}
+		if (message.getType() == EMMessage.Type.FILE) {
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_FILE
+					: MESSAGE_TYPE_SENT_FILE;
+		}
+
+		return -1;// invalid
 	}
 
 	@Override
@@ -169,13 +206,13 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 			@Override
 			public void onSuccess() {
 
-				updateSendedView(message, holder);
+				updateSendedView(message, holder, null);
 			}
 
 			@Override
 			public void onError(int code, String error) {
 
-				updateSendedView(message, holder);
+				updateSendedView(message, holder, error);
 			}
 
 			@Override
@@ -192,7 +229,8 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 	 * @param message
 	 * @param holder
 	 */
-	private void updateSendedView(final EMMessage message, final Holder holder) {
+	private void updateSendedView(final EMMessage message, final Holder holder,
+			final String error) {
 		((Activity) context).runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -205,6 +243,7 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 					// holder.pb.setVisibility(View.GONE);
 					// holder.staus_iv.setVisibility(View.GONE);
 					// }
+					Toast.makeText(context, "发送成功", 0).show();
 
 				} else if (message.status == EMMessage.Status.FAIL) {
 					// if (message.getType() == EMMessage.Type.FILE) {
@@ -213,7 +252,8 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 					// holder.pb.setVisibility(View.GONE);
 					// }
 					// holder.staus_iv.setVisibility(View.VISIBLE);
-					Toast.makeText(context, "发送失败", 0).show();
+					LogUtil.d("sendError", error);
+					Toast.makeText(context, "发送失败" + error, 0).show();
 				}
 
 				notifyDataSetChanged();

@@ -17,9 +17,10 @@ import android.widget.TextView;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.sjw.heartchat.R;
-import com.sjw.heartchat.activity.ChatActivity;
+import com.sjw.heartchat.activity.ChatActivity2;
 import com.sjw.heartchat.activity.MessageActivity;
 import com.sjw.heartchat.bean.MsgBean;
+import com.sjw.heartchat.utils.LogUtil;
 import com.sjw.heartchat.utils.ToastUtil;
 
 public class PublicMsgAdapter extends BaseAdapter {
@@ -76,6 +77,7 @@ public class PublicMsgAdapter extends BaseAdapter {
 		hoder.tv_content.setText(msgBean.getMsg());
 		hoder.btn_praise.setText("赞(" + msgBean.getPraiseCount() + ")");
 		hoder.btn_praise.setTag(msgBean.getPraiseCount());
+		LogUtil.d("userName", "userName "+msgBean.getUserName()+" id "+msgBean.getUserBean().getObjectId());
 		convertView.setBackgroundResource(bgColors[new Random()
 				.nextInt(bgColors.length)]);
 		convertView.setOnClickListener(new OnClickListener() {
@@ -161,7 +163,6 @@ public class PublicMsgAdapter extends BaseAdapter {
 		if (list != null) {
 			for (MsgBean msgBean : list) {
 				beanList.add(msgBean);
-				beanList.addAll(list);
 				msgIds.add(msgBean.getObjectId());
 			}
 			notifyDataSetChanged();
@@ -191,7 +192,7 @@ public class PublicMsgAdapter extends BaseAdapter {
 			switch (v.getId()) {
 			case R.id.btn_chat: // 聊天
 				MsgBean msgBean = (MsgBean) v.getTag();
-				Intent intent = new Intent(context, ChatActivity.class);
+				Intent intent = new Intent(context, ChatActivity2.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("msgBean", msgBean);
 				intent.putExtras(bundle);

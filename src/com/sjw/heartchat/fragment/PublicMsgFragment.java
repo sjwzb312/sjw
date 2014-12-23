@@ -135,6 +135,9 @@ public class PublicMsgFragment extends BaseFragment implements
 					msgAdapter.refeList(arg0);
 				} else {
 					msgAdapter.loadItems(arg0);
+					if(arg0.size()<index){
+						lv_pub_msg.hideFoot();
+					}
 					curPage++;
 				}
 				if (!isRe) {
@@ -166,7 +169,6 @@ public class PublicMsgFragment extends BaseFragment implements
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			ToastUtil.toast(context, "保存信息");
 			sRefreshLayout.setRefreshing(true);
 			queryMsg(true);
 

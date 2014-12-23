@@ -52,9 +52,9 @@ public class NearMsgFragment extends BaseFragment implements OnRefreshListener,
 			Bundle savedInstanceState) {
 		contentView = inflater.inflate(R.layout.fragment_pub_msg_layout, null);
 		locationUtils = new LocationUtils(getActivity());
-		initView();
-		initData();
-		initListener();
+		//initView();
+		//initData();
+		//initListener();
 		return contentView;
 	}
 

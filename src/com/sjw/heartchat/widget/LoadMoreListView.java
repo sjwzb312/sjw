@@ -51,7 +51,8 @@ public class LoadMoreListView extends ListView implements OnScrollListener {
 	}
 
 	public void hideFoot() {
-		footerView.setLayoutParams(new LayoutParams(0, 0));
+		//footerView.setLayoutParams(new LayoutParams(0, 0));
+		removeFooterView(footerView);
 	}
 
 	public void showFoot() {

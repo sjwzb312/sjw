@@ -43,7 +43,7 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 
 	@Override
 	public void initData() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -79,6 +79,10 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 	
 	public String getSpUserName(){
 		return SharePreUtil.getStrFroSp(context, SharePreUtil.SP_USER.USER_NAME, "-1");
+	}
+	
+	public String getSpUserID(){
+		return SharePreUtil.getStrFroSp(context, SharePreUtil.SP_USER.USER_ID, "-1");
 	}
 
 	/**

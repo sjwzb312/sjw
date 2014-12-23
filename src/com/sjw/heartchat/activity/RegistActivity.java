@@ -110,7 +110,7 @@ public class RegistActivity extends BaseActivity {
 					public void onSuccess() {
 						saveUser(userBean);
 						Toast("注册成功");
-						startActivity(new Intent(context, MainActivity.class));
+						startActivity(new Intent(context, LoginActivity.class));
 						finish();
 
 					}

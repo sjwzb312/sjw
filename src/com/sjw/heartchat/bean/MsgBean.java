@@ -17,6 +17,7 @@ public class MsgBean extends BmobObject implements Serializable {
 	private UserBean userBean;
 	private long msgTime;
 	private Integer praiseCount;
+	private String userName;
 	
 	public Integer getPraiseCount() {
 		if(praiseCount==null){
@@ -27,6 +28,14 @@ public class MsgBean extends BmobObject implements Serializable {
 
 	public void setPraiseCount(Integer praiseCount) {
 		this.praiseCount = praiseCount;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	private BmobGeoPoint msgGeoPoint;

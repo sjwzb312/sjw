@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
 		super.initData();
 		fList = new ArrayList<Fragment>();
 		fList.add(new PublicMsgFragment());
-		fList.add(new NearMsgFragment());
+	//	fList.add(new NearMsgFragment());
 		vp_main.setAdapter(new MainVpAdapter(getSupportFragmentManager(), fList));
 
 	}
