@@ -122,7 +122,7 @@ public class NearMsgFragment extends BaseFragment implements OnRefreshListener,
 			index = 10;
 		}
 		msgQuery.setLimit(index);
-		msgQuery.order("-msgTime");
+		msgQuery.order("-updatedAt");
 		if (!isRe) {
 			msgQuery.setSkip(curPage * index);
 		}

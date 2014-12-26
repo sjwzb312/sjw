@@ -6,46 +6,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <RadioGroup
-            android:id="@+id/rg_tab"
-            android:layout_width="match_parent"
-            android:layout_height="50dip"
-            android:orientation="horizontal"
-            android:visibility="visible" >
-
-            <RadioButton
-                android:id="@+id/rb_pub_msg"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:checked="true"
-                android:gravity="center"
-                android:text="大厅"
-                android:textColor="@drawable/tv_tab_title_select"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/rb_near_msg"
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:text="附近"
-                android:textColor="@drawable/tv_tab_title_select"
-                android:textSize="18sp" />
-        </RadioGroup>
+        android:orientation="vertical" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" 
-            android:paddingRight="10dip"
-            android:paddingLeft="10dip"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <Button
@@ -56,14 +22,71 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dip"
         android:text="添加信息" />
-       <Button
+
+    <Button
         android:id="@+id/btn_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="100dip"
         android:layout_marginBottom="20dip"
-        android:text="测试Activity" />
+        android:layout_marginRight="100dip"
+        android:text="测试Activity"
+        android:visibility="gone" />
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <RadioButton
+            android:id="@+id/rb_after"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="饭后"
+            android:textColor="@drawable/tv_tab_title_select"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_friend"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="槽友"
+            android:textColor="@drawable/tv_tab_title_select"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@drawable/tv_tab_title_select"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_set"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="@drawable/tv_tab_title_select"
+            android:textSize="18sp"
+            android:visibility="gone" />
+    </RadioGroup>
 
 </RelativeLayout>

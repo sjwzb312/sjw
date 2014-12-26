@@ -17,7 +17,7 @@ import android.widget.TextView;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.sjw.heartchat.R;
-import com.sjw.heartchat.activity.ChatActivity2;
+import com.sjw.heartchat.activity.ChatActivity;
 import com.sjw.heartchat.activity.MessageActivity;
 import com.sjw.heartchat.bean.MsgBean;
 import com.sjw.heartchat.utils.LogUtil;
@@ -78,8 +78,8 @@ public class PublicMsgAdapter extends BaseAdapter {
 		hoder.btn_praise.setText("赞(" + msgBean.getPraiseCount() + ")");
 		hoder.btn_praise.setTag(msgBean.getPraiseCount());
 		LogUtil.d("userName", "userName "+msgBean.getUserName()+" id "+msgBean.getUserBean().getObjectId());
-		convertView.setBackgroundResource(bgColors[new Random()
-				.nextInt(bgColors.length)]);
+//		convertView.setBackgroundResource(bgColors[new Random()
+//				.nextInt(bgColors.length)]);
 		convertView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -172,9 +172,9 @@ public class PublicMsgAdapter extends BaseAdapter {
 
 	public void refeList(List<MsgBean> list) {
 		if (list != null) {
-			for (MsgBean msgBean : list) {
+			for (MsgBean msgBean : list) { //d751e86db0  a49ebf632b 
 				if (!msgIds.contains(msgBean.getObjectId())) { // 判断是否已经加载过了
-					beanList.addAll(0, list);
+					beanList.add(0, msgBean);
 					msgIds.add(msgBean.getObjectId());
 					notifyDataSetChanged();
 				}
@@ -186,13 +186,13 @@ public class PublicMsgAdapter extends BaseAdapter {
 	}
 
 	private OnClickListener myClickListener = new OnClickListener() {
-
+  
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.btn_chat: // 聊天
 				MsgBean msgBean = (MsgBean) v.getTag();
-				Intent intent = new Intent(context, ChatActivity2.class);
+				Intent intent = new Intent(context, ChatActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putSerializable("msgBean", msgBean);
 				intent.putExtras(bundle);

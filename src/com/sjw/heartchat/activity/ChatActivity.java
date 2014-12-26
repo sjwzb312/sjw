@@ -24,7 +24,7 @@ import com.sjw.heartchat.adapter.LvChatAdapter;
 import com.sjw.heartchat.bean.MsgBean;
 import com.sjw.heartchat.utils.LogUtil;
 
-public class ChatActivity2 extends BaseActivity implements OnClickListener {
+public class ChatActivity extends BaseActivity implements OnClickListener {
 	private EditText et_chat;
 	private Button btn_chat;
 	private MsgBean msgBean;

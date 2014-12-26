@@ -19,4 +19,6 @@ public class Contans {
 		public static final String ADD_MSG_BROCAST = "com.heartchat.action.addmsg";
 	}
 
+	
+
 }

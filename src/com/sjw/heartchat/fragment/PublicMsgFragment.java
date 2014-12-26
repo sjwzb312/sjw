@@ -33,7 +33,7 @@ public class PublicMsgFragment extends BaseFragment implements
 	private LoadMoreListView lv_pub_msg;
 	private View contentView;
 	private PublicMsgAdapter msgAdapter;
-	private SwipeRefreshLayout sRefreshLayout;
+	//private SwipeRefreshLayout sRefreshLayout;
 	private int index = 10;
 	private int curPage = 0;
 
@@ -51,18 +51,21 @@ public class PublicMsgFragment extends BaseFragment implements
 		initListener();
 		return contentView;
 	}
-
+ 
+	
+	
+	   
 	@Override
 	public void initView() {
 		super.initView();
 		lv_pub_msg = (LoadMoreListView) getContentView(R.id.lv_pub_msg);
 		lv_pub_msg.setLoadMorListener(this);
-		sRefreshLayout = (SwipeRefreshLayout) getContentView(R.id.id_swipe_ly);
-		sRefreshLayout.setColorScheme(android.R.color.holo_blue_light,
-				android.R.color.holo_red_light,
-				android.R.color.holo_orange_light,
-				android.R.color.holo_green_light);
-	}
+//		sRefreshLayout = (SwipeRefreshLayout) getContentView(R.id.id_swipe_ly);
+//		sRefreshLayout.setColorScheme(android.R.color.holo_blue_light,
+//				android.R.color.holo_red_light,
+//				android.R.color.holo_orange_light,
+//				android.R.color.holo_green_light);
+	}   
 
 	@Override
 	public void initData() {
@@ -85,8 +88,8 @@ public class PublicMsgFragment extends BaseFragment implements
 
 			}
 		});
-		sRefreshLayout.setRefreshing(true);
-		sRefreshLayout.setOnRefreshListener(this);
+		//sRefreshLayout.setRefreshing(true);
+		//sRefreshLayout.setOnRefreshListener(this);
 
 	}
 
@@ -111,7 +114,7 @@ public class PublicMsgFragment extends BaseFragment implements
 			index = 10;
 		}
 		msgQuery.setLimit(index);
-		msgQuery.order("-msgTime");
+		msgQuery.order("-updatedAt");
 		if (!isRe) {
 			msgQuery.setSkip(curPage * index);
 		}
@@ -121,7 +124,7 @@ public class PublicMsgFragment extends BaseFragment implements
 			@Override
 			public void onError(int arg0, String arg1) {
 				// pdDialog.dismiss();
-				sRefreshLayout.setRefreshing(false);
+				//sRefreshLayout.setRefreshing(false);
 				if (!isRe) {
 					lv_pub_msg.completeLoad();
 				}
@@ -143,7 +146,7 @@ public class PublicMsgFragment extends BaseFragment implements
 				if (!isRe) {
 					lv_pub_msg.completeLoad();
 				}
-				sRefreshLayout.setRefreshing(false);
+				//sRefreshLayout.setRefreshing(false);
 			}
 		});
 	}
@@ -169,7 +172,7 @@ public class PublicMsgFragment extends BaseFragment implements
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			sRefreshLayout.setRefreshing(true);
+			//sRefreshLayout.setRefreshing(true);
 			queryMsg(true);
 
 		}

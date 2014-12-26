@@ -24,7 +24,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
-import com.sjw.heartchat.activity.ChatActivity2;
+import com.sjw.heartchat.activity.ChatActivity;
 import com.sjw.heartchat.activity.MainActivity;
 
 /**
@@ -85,7 +85,7 @@ public class DemoHXSDKHelper extends HXSDKHelper{
 
             @Override
             public Intent onNotificationClick(EMMessage message) {
-                Intent intent = new Intent(appContext, ChatActivity2.class);
+                Intent intent = new Intent(appContext, ChatActivity.class);
                 ChatType chatType = message.getChatType();
                 if (chatType == ChatType.Chat) { // 单聊信息
                     intent.putExtra("userId", message.getFrom());

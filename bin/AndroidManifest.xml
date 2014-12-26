@@ -53,12 +53,13 @@
 
         <activity
             android:name="com.sjw.heartchat.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PageIndicatorDefaults" >
         </activity>
         <activity android:name="com.sjw.heartchat.activity.AddMsgActivity" >
         </activity>
         <activity
-            android:name="com.sjw.heartchat.activity.ChatActivity2"
+            android:name="com.sjw.heartchat.activity.ChatActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity android:name="com.sjw.heartchat.activity.LoginActivity" >

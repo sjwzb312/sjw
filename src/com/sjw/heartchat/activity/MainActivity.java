@@ -19,8 +19,12 @@ import com.sjw.heartchat.R;
 import com.sjw.heartchat.activity.AddMsgActivity;
 import com.sjw.heartchat.activity.BaseActivity;
 import com.sjw.heartchat.adapter.MainVpAdapter;
+import com.sjw.heartchat.fragment.AfterMealFragment;
+import com.sjw.heartchat.fragment.FriendFragment;
+import com.sjw.heartchat.fragment.MineFragment;
 import com.sjw.heartchat.fragment.NearMsgFragment;
 import com.sjw.heartchat.fragment.PublicMsgFragment;
+import com.sjw.heartchat.fragment.SetFragment;
 
 public class MainActivity extends BaseActivity {
 	private ViewPager vp_main;
@@ -49,8 +53,11 @@ public class MainActivity extends BaseActivity {
 	public void initData() {
 		super.initData();
 		fList = new ArrayList<Fragment>();
-		fList.add(new PublicMsgFragment());
-	//	fList.add(new NearMsgFragment());
+		fList.add(new AfterMealFragment());
+		fList.add(new FriendFragment());
+		fList.add(new MineFragment());
+		//fList.add(new SetFragment());
+		// fList.add(new NearMsgFragment());
 		vp_main.setAdapter(new MainVpAdapter(getSupportFragmentManager(), fList));
 
 	}
@@ -70,11 +77,17 @@ public class MainActivity extends BaseActivity {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId) {
-				case R.id.rb_pub_msg:
+				case R.id.rb_after:
 					vp_main.setCurrentItem(0);
 					break;
-				case R.id.rb_near_msg:
+				case R.id.rb_friend:
 					vp_main.setCurrentItem(1);
+					break;
+				case R.id.rb_mine:
+					vp_main.setCurrentItem(2);
+					break;
+				case R.id.rb_set:
+					vp_main.setCurrentItem(3);
 					break;
 				default:
 					break;
@@ -91,13 +104,11 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
 
 			}
 		});
