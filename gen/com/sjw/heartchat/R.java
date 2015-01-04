@@ -320,9 +320,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_title_indicator_selected_color=0x7f05000e;
         public static final int default_title_indicator_text_color=0x7f05000f;
         public static final int default_underline_indicator_selected_color=0x7f050010;
+        /**  <color name="button_text">#698CD6</color> 
+         */
+        public static final int ff8000=0x7f05001d;
+        public static final int ffffff=0x7f05001e;
         public static final int main_bkg=0x7f050015;
         public static final int red=0x7f05001a;
-        /**      <color name="border">#E36D6D</color> 
+        /**  <color name="border">#E36D6D</color> 
          */
         public static final int text=0x7f050014;
         public static final int transparent=0x7f050011;
@@ -334,8 +338,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int vpi__bright_foreground_holo_light=0x7f050003;
         public static final int vpi__bright_foreground_inverse_holo_dark=0x7f050006;
         public static final int vpi__bright_foreground_inverse_holo_light=0x7f050007;
-        public static final int vpi__dark_theme=0x7f05001d;
-        public static final int vpi__light_theme=0x7f05001e;
+        public static final int vpi__dark_theme=0x7f05001f;
+        public static final int vpi__light_theme=0x7f050020;
         public static final int white=0x7f05001b;
     }
     public static final class dimen {
@@ -363,7 +367,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_title_indicator_top_padding=0x7f08000c;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int app_pref_bg=0x7f020000;
+        public static final int bg9C8E8E=0x7f020017;
+        public static final int chatfrom_bg_normal=0x7f020001;
+        public static final int chatto_bg_focused=0x7f020002;
+        public static final int default_face=0x7f020003;
+        public static final int feed_icon_comment_xxdpi=0x7f020004;
+        public static final int feed_icon_faver_pre_xxdpi=0x7f020005;
+        public static final int feed_icon_faver_xxdpi=0x7f020006;
+        public static final int general_button_back=0x7f020007;
+        public static final int homepage_actionbar_btn_todo=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int list_arrow=0x7f02000a;
+        public static final int list_btn_reply=0x7f02000b;
+        public static final int min_bg_border=0x7f02000c;
         /** 
      #00000000 透明
      #000000 纯黑
@@ -376,66 +393,80 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  透明 
          */
-        public static final int redbg=0x7f020009;
-        public static final int tv_tab_title_select=0x7f020001;
-        public static final int vpi__tab_indicator=0x7f020002;
-        public static final int vpi__tab_selected_focused_holo=0x7f020003;
-        public static final int vpi__tab_selected_holo=0x7f020004;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020005;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020006;
-        public static final int vpi__tab_unselected_holo=0x7f020007;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020008;
+        public static final int redbg=0x7f020016;
+        public static final int tab_bg=0x7f02000d;
+        public static final int tv_tab_title_select=0x7f02000e;
+        public static final int vpi__tab_indicator=0x7f02000f;
+        public static final int vpi__tab_selected_focused_holo=0x7f020010;
+        public static final int vpi__tab_selected_holo=0x7f020011;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020012;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020013;
+        public static final int vpi__tab_unselected_holo=0x7f020014;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020015;
     }
     public static final class id {
-        public static final int action_settings=0x7f040030;
+        public static final int action_settings=0x7f04003d;
         public static final int bottom=0x7f040003;
-        public static final int btn_add=0x7f040015;
-        public static final int btn_cancle_push=0x7f04002f;
-        public static final int btn_chat=0x7f04002e;
-        public static final int btn_chat_send=0x7f04000b;
-        public static final int btn_go_regist=0x7f040012;
-        public static final int btn_login=0x7f040011;
-        public static final int btn_praise=0x7f04002d;
-        public static final int btn_publish=0x7f04000e;
-        public static final int btn_regist=0x7f04001f;
-        public static final int btn_send_comment=0x7f04001e;
-        public static final int btn_send_msg=0x7f040006;
-        public static final int btn_test=0x7f040016;
-        public static final int btn_voice=0x7f040007;
-        public static final int container=0x7f040013;
-        public static final int et_chat=0x7f04000a;
-        public static final int et_comment=0x7f04001d;
-        public static final int et_content=0x7f04000d;
-        public static final int et_msg=0x7f040005;
-        public static final int et_name=0x7f04000f;
-        public static final int et_pwd=0x7f040010;
-        public static final int id_swipe_ly=0x7f040027;
-        public static final int listview=0x7f04000c;
-        public static final int lv_chat=0x7f040009;
-        public static final int lv_msg=0x7f04001c;
-        public static final int lv_pub_msg=0x7f040028;
-        public static final int msg_header_tv=0x7f04002b;
+        public static final int btn_add=0x7f040018;
+        public static final int btn_cancle_push=0x7f04003c;
+        public static final int btn_chat=0x7f04003b;
+        public static final int btn_chat_send=0x7f04000e;
+        public static final int btn_find=0x7f040006;
+        public static final int btn_go_regist=0x7f040015;
+        public static final int btn_login=0x7f040014;
+        public static final int btn_praise=0x7f04003a;
+        public static final int btn_publish=0x7f040011;
+        public static final int btn_regist=0x7f040021;
+        public static final int btn_send_comment=0x7f040020;
+        public static final int btn_send_msg=0x7f040009;
+        public static final int btn_test=0x7f040019;
+        public static final int btn_voice=0x7f04000a;
+        public static final int container=0x7f040016;
+        public static final int et_chat=0x7f04000d;
+        public static final int et_comment=0x7f04001f;
+        public static final int et_content=0x7f040010;
+        public static final int et_find_name=0x7f040005;
+        public static final int et_msg=0x7f040008;
+        public static final int et_name=0x7f040012;
+        public static final int et_pwd=0x7f040013;
+        public static final int iv_chat_face=0x7f040022;
+        public static final int iv_friend_face=0x7f04002b;
+        public static final int listview=0x7f04000f;
+        public static final int lv_chat=0x7f04000c;
+        public static final int lv_find_friend=0x7f040007;
+        public static final int lv_friend=0x7f04002f;
+        public static final int lv_msg=0x7f04001e;
+        public static final int lv_pub_msg=0x7f040031;
+        public static final int msg_header_tv=0x7f040037;
         public static final int none=0x7f040000;
-        public static final int pb_right_chat=0x7f040021;
-        public static final int pull_to_refresh_load_progress=0x7f040029;
-        public static final int pull_to_refresh_loadmore_text=0x7f04002a;
-        public static final int rb_after=0x7f040018;
-        public static final int rb_friend=0x7f040019;
-        public static final int rb_mine=0x7f04001a;
-        public static final int rb_set=0x7f04001b;
-        public static final int rg_tab=0x7f040017;
-        public static final int tab_page=0x7f040025;
+        public static final int pb_right_chat=0x7f040026;
+        public static final int pull_to_refresh_load_progress=0x7f040035;
+        public static final int pull_to_refresh_loadmore_text=0x7f040036;
+        public static final int rb_after=0x7f04001b;
+        public static final int rb_friend=0x7f04001c;
+        public static final int rb_mine=0x7f04001d;
+        public static final int rg_tab=0x7f04001a;
+        public static final int right_iv_face=0x7f040029;
+        public static final int rl_content=0x7f040038;
+        public static final int rl_mine_msg=0x7f040030;
+        public static final int tab_page=0x7f04002d;
+        public static final int title_left=0x7f040032;
+        public static final int title_right=0x7f040034;
         public static final int top=0x7f040004;
         public static final int triangle=0x7f040001;
-        public static final int tv_chat_left=0x7f040020;
-        public static final int tv_chat_right=0x7f040023;
-        public static final int tv_comment_itme=0x7f040024;
-        public static final int tv_msg_contnet=0x7f04002c;
-        public static final int tv_right_state=0x7f040022;
-        public static final int tv_title=0x7f040008;
+        public static final int tv_chat_left=0x7f040025;
+        public static final int tv_chat_msg=0x7f040024;
+        public static final int tv_chat_name=0x7f040023;
+        public static final int tv_chat_right=0x7f040028;
+        public static final int tv_comment_itme=0x7f04002a;
+        public static final int tv_friend_name=0x7f04002c;
+        public static final int tv_msg_content=0x7f04000b;
+        public static final int tv_msg_contnet=0x7f040039;
+        public static final int tv_right_state=0x7f040027;
+        public static final int tv_title=0x7f040033;
         public static final int underline=0x7f040002;
-        public static final int vp_after=0x7f040026;
-        public static final int vp_main=0x7f040014;
+        public static final int vp_after=0x7f04002e;
+        public static final int vp_main=0x7f040017;
     }
     public static final class integer {
         public static final int default_circle_indicator_orientation=0x7f070000;
@@ -445,29 +476,33 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int default_underline_indicator_fade_length=0x7f070004;
     }
     public static final class layout {
-        public static final int activity_add_msg_layout=0x7f030000;
-        public static final int activity_chat_layout=0x7f030001;
-        public static final int activity_comment=0x7f030002;
-        public static final int activity_login_layout=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_main_layout=0x7f030005;
-        public static final int activity_msg_activity=0x7f030006;
-        public static final int activity_regist_layout=0x7f030007;
-        public static final int activity_welcome_layout=0x7f030008;
-        public static final int adapter_chat_left_itme=0x7f030009;
-        public static final int adapter_chat_right_itme=0x7f03000a;
-        public static final int adapter_comment_item=0x7f03000b;
-        public static final int fragment_after_meal_layout=0x7f03000c;
-        public static final int fragment_friend_layout=0x7f03000d;
-        public static final int fragment_main=0x7f03000e;
-        public static final int fragment_mine_layout=0x7f03000f;
-        public static final int fragment_pub_msg_layout=0x7f030010;
-        public static final int fragment_set_layout=0x7f030011;
-        public static final int listview_footer=0x7f030012;
-        public static final int lv_load_more_foot=0x7f030013;
-        public static final int msg_lv_header=0x7f030014;
-        public static final int public_msg_item_layout=0x7f030015;
-        public static final int test_layout=0x7f030016;
+        public static final int activity_add_friends=0x7f030000;
+        public static final int activity_add_msg_layout=0x7f030001;
+        public static final int activity_chat_layout=0x7f030002;
+        public static final int activity_comment=0x7f030003;
+        public static final int activity_login_layout=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_main_layout=0x7f030006;
+        public static final int activity_msg_activity=0x7f030007;
+        public static final int activity_regist_layout=0x7f030008;
+        public static final int activity_welcome_layout=0x7f030009;
+        public static final int adapter_chat_history_item=0x7f03000a;
+        public static final int adapter_chat_left_item=0x7f03000b;
+        public static final int adapter_chat_right_item=0x7f03000c;
+        public static final int adapter_comment_item=0x7f03000d;
+        public static final int adapter_friend_item=0x7f03000e;
+        public static final int fragment_after_meal_layout=0x7f03000f;
+        public static final int fragment_friend_layout=0x7f030010;
+        public static final int fragment_main=0x7f030011;
+        public static final int fragment_mine_layout=0x7f030012;
+        public static final int fragment_pub_msg_layout=0x7f030013;
+        public static final int fragment_set_layout=0x7f030014;
+        public static final int include_activity_title=0x7f030015;
+        public static final int listview_footer=0x7f030016;
+        public static final int lv_load_more_foot=0x7f030017;
+        public static final int msg_lv_header=0x7f030018;
+        public static final int public_msg_item_layout=0x7f030019;
+        public static final int test_layout=0x7f03001a;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -481,11 +516,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -509,6 +546,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int Widget=0x7f090001;
         public static final int Widget_IconPageIndicator=0x7f090004;
         public static final int Widget_TabPageIndicator=0x7f090002;
+        public static final int tab_rb=0x7f090007;
     }
     public static final class styleable {
         /** Attributes that can be used with a CirclePageIndicator.

@@ -60,7 +60,7 @@
         </activity>
         <activity
             android:name="com.sjw.heartchat.activity.ChatActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity android:name="com.sjw.heartchat.activity.LoginActivity" >
         </activity>
@@ -76,6 +76,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.sjw.heartchat.activity.TestActivity" >
+        </activity>
+        <activity android:name="com.sjw.heartchat.activity.AddFriendsActivity" >
         </activity>
 
         <service

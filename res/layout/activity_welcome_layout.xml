@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="欢迎您的加入..."
+        android:text="欢迎来吐槽..."
         android:textSize="22sp" 
         android:textStyle="bold"
         android:textColor="@color/white"

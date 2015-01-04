@@ -49,7 +49,11 @@ public class SplashActivity extends BaseActivity {
 				String times = formatter.format(new Date(arg0 * 1000L));
 				Date date=new Date(arg0*1000L);
 				HeartChatApplication.day =date.getDay();
-				ToastUtil.toast(context, times);
+				if(HeartChatApplication.day==0){
+					HeartChatApplication.day=7;
+				}
+				//HeartChatApplication.day=3;
+				//ToastUtil.toast(context, times);
 				LogUtil.d(TAG, times+"  day  "+HeartChatApplication.day);
 				startActivity();
 

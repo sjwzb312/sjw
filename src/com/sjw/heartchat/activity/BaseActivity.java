@@ -7,8 +7,11 @@ import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.sjw.heartchat.R;
 import com.sjw.heartchat.bean.UserBean;
 import com.sjw.heartchat.inte.ViewInitface;
 import com.sjw.heartchat.utils.LogUtil;
@@ -25,6 +28,9 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 	public ProgressDialog pd;
 	public String LOGTAG;
 	public Context context;
+	public View leftView;
+	public View rightView;
+	public View tv_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,9 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 		LOGTAG = getClass().getName();
 		context = this;
 		pd = new ProgressDialog(this);
+		leftView=findViewById(R.id.title_left);
+		rightView=findViewById(R.id.title_right);
+		tv_title=findViewById(R.id.tv_title);
 
 	}
 
@@ -99,5 +108,34 @@ public class BaseActivity extends FragmentActivity implements ViewInitface {
 		return TextUtils.isEmpty(SharePreUtil.getStrFroSp(context,
 				SharePreUtil.SP_USER.USER_NAME, ""));
 	}
+	
+	private void hideLeft(){
+		if(leftView!=null){
+			leftView.setVisibility(View.GONE);
+		}
+	}
 
+	public void hideRight(){
+		if(rightView!=null){
+			rightView.setVisibility(View.GONE);
+		}
+	}
+	
+	public void showRight(){
+		if(rightView!=null){
+			rightView.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	public void setLeftViewBg(int id){
+		if(leftView!=null){
+			((ImageView)leftView).setImageResource(id);
+		}
+	}
+	
+	public void setTvTitle(String title){
+		if(tv_title!=null){
+			((TextView)tv_title).setText(title);
+		}
+	}
 }

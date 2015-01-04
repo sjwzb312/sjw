@@ -32,7 +32,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private LvChatAdapter lvChatAdapter;
 	private EMConversation conversation;
 	private String toChatUsername;
-	private TextView tv_title;
+	private TextView tv_msg_content;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +46,13 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void initView() {
 		super.initView();
+		hideRight();
+		tv_msg_content=(TextView) findViewById(R.id.tv_msg_content);
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		et_chat = (EditText) getViewById(R.id.et_chat);
 		btn_chat = (Button) getViewById(R.id.btn_chat_send);
 		lv_chat = (ListView) findViewById(R.id.lv_chat);
+		setLeftViewBg(R.drawable.general_button_back);
 		initRec();
 
 	}
@@ -59,13 +62,14 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		super.initData();
 		msgBean = (MsgBean) getIntent().getSerializableExtra("msgBean");
 		toChatUsername = msgBean.getUserName();
-		//toChatUsername="123";
+		tv_msg_content.setText(msgBean.getMsg());
+		// toChatUsername="123";
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
-		  // 把此会话的未读数置为0
-        conversation.resetUnreadMsgCount();
-		tv_title.setText(getSpUserName() + " 对  " + toChatUsername);
-		lvChatAdapter = new LvChatAdapter(this,toChatUsername);
+		// 把此会话的未读数置为0
+		conversation.resetUnreadMsgCount();
+		setTvTitle(getSpUserName() + " 对  " + toChatUsername);
+		lvChatAdapter = new LvChatAdapter(this, toChatUsername);
 		lv_chat.setAdapter(lvChatAdapter);
 	}
 
@@ -90,9 +94,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private NewMessageBroadcastReceiver receiver;
+
 	private void initRec() {
 		// 注册接收消息广播
-		 receiver= new NewMessageBroadcastReceiver();
+		receiver = new NewMessageBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(EMChatManager
 				.getInstance().getNewMessageBroadcastAction());
 		// 设置广播的优先级别大于Mainacitivity,这样如果消息来的时候正好在chat页面，直接显示消息，而不是提示消息未读
@@ -137,24 +142,24 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-	        // 注销广播
-	        try {
-	            unregisterReceiver(receiver);
-	            receiver = null;
-	        } catch (Exception e) {
-	        }
-	        try {
-	            unregisterReceiver(ackMessageReceiver);
-	            ackMessageReceiver = null;
-	            unregisterReceiver(deliveryAckMessageReceiver);
-	            deliveryAckMessageReceiver = null;
-	        } catch (Exception e) {
-	        }
+		// 注销广播
+		try {
+			unregisterReceiver(receiver);
+			receiver = null;
+		} catch (Exception e) {
+		}
+		try {
+			unregisterReceiver(ackMessageReceiver);
+			ackMessageReceiver = null;
+			unregisterReceiver(deliveryAckMessageReceiver);
+			deliveryAckMessageReceiver = null;
+		} catch (Exception e) {
+		}
 	}
 
 	/**
@@ -224,7 +229,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			String msgid = intent.getStringExtra("msgid");
 			String from = intent.getStringExtra("from");
 			EMConversation conversation = EMChatManager.getInstance()
-					.  getConversation(from);
+					.getConversation(from);
 			if (conversation != null) {
 				// 把message设为已读
 				EMMessage msg = conversation.getMessage(msgid);

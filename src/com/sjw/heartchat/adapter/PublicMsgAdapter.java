@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -21,6 +22,7 @@ import com.sjw.heartchat.activity.ChatActivity;
 import com.sjw.heartchat.activity.MessageActivity;
 import com.sjw.heartchat.bean.MsgBean;
 import com.sjw.heartchat.utils.LogUtil;
+import com.sjw.heartchat.utils.SharePreUtil;
 import com.sjw.heartchat.utils.ToastUtil;
 
 public class PublicMsgAdapter extends BaseAdapter {
@@ -63,8 +65,10 @@ public class PublicMsgAdapter extends BaseAdapter {
 			hoder = new ViewHoder();
 			hoder.tv_content = (TextView) convertView
 					.findViewById(R.id.tv_msg_contnet);
-			hoder.btn_chart = (Button) getView(convertView, R.id.btn_chat);
-			hoder.btn_praise = (Button) getView(convertView, R.id.btn_praise);
+			hoder.btn_chart = (TextView) getView(convertView, R.id.btn_chat);
+			hoder.btn_praise = (TextView) getView(convertView, R.id.btn_praise);
+			hoder.rl_content = (RelativeLayout) getView(convertView,
+					R.id.rl_content);
 
 			convertView.setTag(hoder);
 		} else {
@@ -75,11 +79,19 @@ public class PublicMsgAdapter extends BaseAdapter {
 		hoder.btn_praise.setOnClickListener(myClickListener);
 		hoder.btn_chart.setTag(msgBean);
 		hoder.tv_content.setText(msgBean.getMsg());
+		if (msgBean.getUserName().equals(
+				SharePreUtil.getShPreferences(context).getString(
+						SharePreUtil.SP_USER.USER_NAME, "123"))) {
+			hoder.btn_chart.setVisibility(View.GONE);
+		} else {
+			hoder.btn_chart.setVisibility(View.VISIBLE);
+		}
 		hoder.btn_praise.setText("赞(" + msgBean.getPraiseCount() + ")");
 		hoder.btn_praise.setTag(msgBean.getPraiseCount());
-		LogUtil.d("userName", "userName "+msgBean.getUserName()+" id "+msgBean.getUserBean().getObjectId());
-//		convertView.setBackgroundResource(bgColors[new Random()
-//				.nextInt(bgColors.length)]);
+		LogUtil.d("userName", "userName " + msgBean.getUserName() + " id "
+				+ msgBean.getUserBean().getObjectId());
+		hoder.rl_content.setBackgroundResource(bgColors[new Random()
+				.nextInt(bgColors.length)]);
 		convertView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -105,9 +117,9 @@ public class PublicMsgAdapter extends BaseAdapter {
 	private class PraisClickListener implements OnClickListener {
 
 		private MsgBean msgBean;
-		private Button button;
+		private TextView button;
 
-		public PraisClickListener(MsgBean msgBean, Button button) {
+		public PraisClickListener(MsgBean msgBean, TextView button) {
 			super();
 			this.button = button;
 			this.msgBean = msgBean;
@@ -140,8 +152,9 @@ public class PublicMsgAdapter extends BaseAdapter {
 
 	private class ViewHoder {
 		TextView tv_content;
-		Button btn_chart;
-		Button btn_praise;
+		TextView btn_chart;
+		TextView btn_praise;
+		RelativeLayout rl_content;
 
 	}
 
@@ -172,7 +185,7 @@ public class PublicMsgAdapter extends BaseAdapter {
 
 	public void refeList(List<MsgBean> list) {
 		if (list != null) {
-			for (MsgBean msgBean : list) { //d751e86db0  a49ebf632b 
+			for (MsgBean msgBean : list) { // d751e86db0 a49ebf632b
 				if (!msgIds.contains(msgBean.getObjectId())) { // 判断是否已经加载过了
 					beanList.add(0, msgBean);
 					msgIds.add(msgBean.getObjectId());
@@ -186,7 +199,7 @@ public class PublicMsgAdapter extends BaseAdapter {
 	}
 
 	private OnClickListener myClickListener = new OnClickListener() {
-  
+
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {

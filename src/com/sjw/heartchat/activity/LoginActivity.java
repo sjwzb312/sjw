@@ -29,6 +29,8 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	public void initView() {
 		super.initView();
+		setTvTitle("登陆");
+		hideRight();
 		et_name = (EditText) findViewById(R.id.et_name);
 		et_pwd = (EditText) findViewById(R.id.et_pwd);
 		btn_login = (Button) findViewById(R.id.btn_login);

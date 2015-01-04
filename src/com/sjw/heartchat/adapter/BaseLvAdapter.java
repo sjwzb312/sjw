@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,6 +13,11 @@ public abstract class BaseLvAdapter<E> extends BaseAdapter {
 
 	public List<E> itemList = new ArrayList<E>();
 	public Context context;
+	public LayoutInflater inflater;
+	public BaseLvAdapter(Context context) {
+		this.context=context;
+		inflater=LayoutInflater.from(context);
+	}
 
 	@Override
 	public int getCount() {

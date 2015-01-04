@@ -46,10 +46,22 @@ public class AfterMealFragment extends BaseFragment {
 		super.initView();
 		tab_page = (TabPageIndicator) contentView.findViewById(R.id.tab_page);
 		vp = (ViewPager) contentView.findViewById(R.id.vp_after);
+		vp.setOffscreenPageLimit(HeartChatApplication.day);
 		vpAdapter = new VpAdapter(getFragmentManager());
 		vp.setAdapter(vpAdapter);
 		tab_page.setViewPager(vp);
+		
 
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (HeartChatApplication.day == 1) {
+			tab_page.getChildAt(0).setVisibility(View.GONE);
+		}else{
+			tab_page.getChildAt(0).setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override

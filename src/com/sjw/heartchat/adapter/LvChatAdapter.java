@@ -24,6 +24,8 @@ import com.sjw.heartchat.utils.LogUtil;
  * 
  */
 public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
+	
+
 	private static final int MESSAGE_TYPE_RECV_TXT = 0;
 	private static final int MESSAGE_TYPE_SENT_TXT = 1;
 	private static final int MESSAGE_TYPE_SENT_IMAGE = 2;
@@ -42,7 +44,10 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 
 	private EMConversation emConversation;
 
+	
+
 	public LvChatAdapter(Context context, String toUserName) {
+		super(context);
 		this.context = context;
 		emConversation = EMChatManager.getInstance()
 				.getConversation(toUserName);
@@ -64,16 +69,16 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 			switch (getItemViewType(position)) {
 			case MESSAGE_TYPE_RECV_TXT:
 				convertView = LayoutInflater.from(context).inflate(
-						R.layout.adapter_chat_left_itme, null);
+						R.layout.adapter_chat_left_item, null);
 				holder.tv_left = (TextView) convertView
 						.findViewById(R.id.tv_chat_left);
-				
+
 				convertView.setTag(holder);
 				break;
 
 			case MESSAGE_TYPE_SENT_TXT:
 				convertView = LayoutInflater.from(context).inflate(
-						R.layout.adapter_chat_right_itme, null);
+						R.layout.adapter_chat_right_item, null);
 				holder.tv_right = (TextView) convertView
 						.findViewById(R.id.tv_chat_right);
 				holder.tv_right_state = (TextView) convertView
@@ -95,7 +100,7 @@ public class LvChatAdapter extends BaseLvAdapter<EMMessage> {
 
 			// 设置内容
 			holder.tv_left.setText(txtBody.getMessage());
-			//handleTextMessage(emMessage, holder, position);
+			// handleTextMessage(emMessage, holder, position);
 			break;
 
 		case MESSAGE_TYPE_SENT_TXT:

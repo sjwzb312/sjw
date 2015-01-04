@@ -35,7 +35,8 @@ public class RegistActivity extends BaseActivity {
 
 	@Override
 	public void initView() {
-
+		hideRight();
+		setTvTitle("注册");
 		Log.d("RegistActivity", "initView regist ");
 		btn_regist = (Button) findViewById(R.id.btn_regist);
 		et_name = (EditText) findViewById(R.id.et_name);
@@ -117,7 +118,7 @@ public class RegistActivity extends BaseActivity {
 
 					@Override
 					public void onError(EaseMobException exception) {
-
+						pd.dismiss();
 						int errorCode = exception.getErrorCode();
 						if (errorCode == EMError.NONETWORK_ERROR) {
 							Toast.makeText(context, "网络异常，请检查网络！",
@@ -136,7 +137,9 @@ public class RegistActivity extends BaseActivity {
 
 					}
 				});
-		registRequest.request();
+		registRequest.request();   
+		
+		  
 	}
 
 }

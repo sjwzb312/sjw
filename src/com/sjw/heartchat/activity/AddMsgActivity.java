@@ -23,13 +23,14 @@ public class AddMsgActivity extends BaseActivity {
 	private EditText et_msg;
 	private Button btn_send;
 	private Button btn_voice;
-	private LocationUtils locationUtils;
+
+	// private LocationUtils locationUtils;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_msg_layout);
-		locationUtils = new LocationUtils(this);
+		// locationUtils = new LocationUtils(this);
 		initView();
 		initListener();
 	}
@@ -40,6 +41,9 @@ public class AddMsgActivity extends BaseActivity {
 		et_msg = (EditText) findViewById(R.id.et_msg);
 		btn_send = (Button) findViewById(R.id.btn_send_msg);
 		btn_voice = (Button) findViewById(R.id.btn_voice);
+		hideRight();
+		setLeftViewBg(R.drawable.general_button_back);
+		setTvTitle("吐槽");
 	}
 
 	@Override
@@ -62,6 +66,14 @@ public class AddMsgActivity extends BaseActivity {
 					sendMsg(msgBean);
 				}
 
+			}
+		});
+		leftView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				onBackPressed();
 			}
 		});
 	}
@@ -103,6 +115,12 @@ public class AddMsgActivity extends BaseActivity {
 		Intent intent = new Intent();
 		intent.setAction(BroadCastAction.ADD_MSG_BROCAST);
 		sendBroadcast(intent);
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
 	}
 
 }

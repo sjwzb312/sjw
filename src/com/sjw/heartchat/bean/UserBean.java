@@ -6,8 +6,16 @@ public class UserBean extends BmobUser {
 	private String userId;
 	private String nickName;
 	private String userSex;
-
+	private String chatMsg;
 	
+	public String getChatMsg() {
+		return chatMsg;
+	}
+
+	public void setChatMsg(String chatMsg) {
+		this.chatMsg = chatMsg;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

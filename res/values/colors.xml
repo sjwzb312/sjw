@@ -11,23 +11,27 @@
      #9C8E8E 灰色
      #8E9C8E 灰绿
     -->
-    
+
+
     <!-- 透明 -->
     <drawable name="redbg">#F12512</drawable>
+    <drawable name="bg9C8E8E">#9C8E8E</drawable>
+
     <color name="transparent">#00000000</color>
     <color name="border_bkg">#FFFFFF</color>
     <color name="border">#000000</color>
-<!--     <color name="border">#E36D6D</color> -->
+    <!-- <color name="border">#E36D6D</color> -->
     <color name="text">#000000</color>
     <color name="main_bkg">#E3DBCF</color>
     <color name="button">#FFFFFF</color>
     <color name="button_disable">#9C8E8E</color>
     <color name="button_press">#F1F1F1</color>
     <color name="button_text">#000000</color>
-     <color name="red">#F12512</color>
-     <color name="white">#ffffff</color>
-     <color name="blue">#20C1F2</color>
-  <!--   <color name="button_text">#698CD6</color> -->
-
+    <color name="red">#F12512</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#20C1F2</color>
+    <!-- <color name="button_text">#698CD6</color> -->
+    <color name="ff8000">#FF8000</color>
+    <color name="ffffff">#ffffff</color>
 
 </resources>

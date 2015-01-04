@@ -4,18 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/id_swipe_ly"
+    <com.sjw.heartchat.widget.LoadMoreListView
+        android:id="@+id/lv_pub_msg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <com.sjw.heartchat.widget.LoadMoreListView
-            android:id="@+id/lv_pub_msg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:dividerHeight="5dip"
-            android:paddingTop="10dip" >
-        </com.sjw.heartchat.widget.LoadMoreListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent" 
+        android:divider="@color/transparent"
+        android:paddingTop="10dip">
+    </com.sjw.heartchat.widget.LoadMoreListView>
 
 </LinearLayout>
